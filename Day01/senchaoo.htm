@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="touch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
+    <script src="touch/sencha-touch-all.js"></script>
+    <script>
+        Ext.define("Car", {
+            config: {
+                model: "",
+                yearOfMake: 2012,
+                color: ""
+            },
+            constructor: function (cfg) {
+                this.initConfig(cfg);
+            }
+        });
+
+        var c1 = Ext.create("Car", {
+            model : "Santro",color:"Black"
+        });
+        console.log(c1.getModel());
+        c1.setColor("Blue");
+        var c2 = Ext.create("Car", {
+            model : "City",yearOfMake:2011
+        });
+
+
+        Ext.define("Nvidia.pune.shivajiNagar.Book", {});
+        var b1 = Ext.create("Nvidia.pune.shivajiNagar.Book");
+
+        Ext.define("Person", {
+            constructor: function (name, age) {
+                console.log("Person created");
+                this.name = name;
+                this.age = age;
+            },
+            read: function () { }
+        });
+        var p1 = Ext.create("Person", "Sam", 12);
+        console.log(p1.name + ", " + p1.age);
+        p1.read();
+        var p2 = Ext.create("Person", "Ram", 34);
+        console.log(p2.name + ", " + p2.age);
+        p2.read();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

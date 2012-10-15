@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="touch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
+    <script src="touch/sencha-touch-all.js"></script>
+    <script>
+        var gameOverPanel;
+        Ext.define("GuessingGame", {
+            config: {
+                target: Math.round(Math.random() * 100),
+                attempts: 0,
+                message: "",
+                gameOver: false
+            },
+            reset: function () {
+                this.setAttempts(0);
+                this.setMessage("");
+                this.setTarget(Math.round(Math.random() * 100));
+                this.setGameOver(false);
+            },
+            play : function (guess) {
+                var attempts = this.getAttempts();
+                attempts++;
+                this.setAttempts(attempts);
+                if (guess > this.getTarget())
+                    this.setMessage("Aim Lower");
+                else if (guess < this.getTarget())
+                    this.setMessage("Aim Higher");
+                else {
+                    this.setMessage("You have got it in " + this.getAttempts() + " attempts");
+                    this.setGameOver(true);
+                }
+            },
+            constructor: function (cfg) {
+                this.initConfig(cfg);
+            }
+        });
+        var game = Ext.create("GuessingGame");
+
+        function playAgain() {
+            game.reset();
+            Ext.getCmp("messagelabel").setHtml("");
+            Ext.getCmp("attemptslabel").setHtml("");
+            Ext.getCmp("guesstext").setValue("0");
+            gameOverPanel.hide();
+        }
+        function play(src) {
+            var guess = Ext.getCmp("guesstext");
+            if (Ext.isNumeric(guess.getValue())) {
+                game.play(parseInt(guess.getValue()));
+                Ext.getCmp("messagelabel").setHtml(game.getMessage());
+                Ext.getCmp("attemptslabel").setHtml("Attempts: " + game.getAttempts());
+                guess.select();
+                if (game.getGameOver()) {
+                    if (!gameOverPanel) {
+                        gameOverPanel = Ext.create("Ext.Panel", {
+                            height: 200, width: 300,
+                            items: [
+                                {
+                                    xtype: "label",
+                                    html: "Do you want to play again?"
+                                },
+                                {
+                                    xtype: "button",
+                                    text: "Yes",
+                                    listeners: {
+                                        tap: playAgain
+                                    }
+                                },
+                                {
+                                    xtype: "button",
+                                    text: "No",
+                                    listeners: {
+                                        tap: function () {
+                                            window.close();
+                                        }
+                                    }
+                                }
+                            ]
+                        });
+                        }
+                        gameOverPanel.showBy(src);
+                }
+            }
+        }
+
+        Ext.application({
+            launch: function () {
+                console.log(game.getTarget());
+                Ext.create("Ext.Panel", {
+                    height: 300, width: 600, padding: 20,
+                    fullscreen: true,
+                    items: [
+                                {
+                                    xtype: "textfield",
+                                    label: "Enter your guess",
+                                    id: "guesstext"
+                                },
+                                {
+                                    xtype: "button",
+                                    text: "Guess",
+                                    ui: "confirm",
+                                    id: "guessbutton",
+                                    listeners: {
+                                        tap: play
+                                    }
+                                },
+                                {
+                                    xtype: "label",
+                                    id: "messagelabel"
+                                },
+                                {
+                                    xtype: "label",
+                                    id: "attemptslabel"
+                                }
+                           ]
+                });
+            }
+        });
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
