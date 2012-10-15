@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+        //Scripting
+        //case-sensitive
+        //dynamically typed
+        //functional
+        //interpreted
+        //arguments
+
+        function sleep() {
+            console.log("Yawning");
+        }
+        function sleep(time) {
+            console.log("Snoring " + time);
+        }
+
+        sleep();
+
+        function add() {
+            var total = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                total += arguments[i];
+            }
+            console.log("Total : " + total);
+        }
+        add(1, 3);
+        add(1, 3, 4, 5, 66, 67);
+        add(3425, 345345, 3454, 3543, 534, 534, 534, 534, 534, 5);
+
+
+
+        function work() {
+            console.log("*********Working********");
+            for (var i = 0; i < arguments.length; i++) {
+                console.log(arguments[i]);
+            }
+        }
+
+        work();
+        work(7, "days");
+        work("1 hour");
+        work(5, "days", 8, "hours a day");
+        work("check email");
+
+
+
+        //Function hoisting
+        eat();
+        function eat() {
+            console.log("Waiting for lunch");
+        }
+        
+
+
+
+
+
+
+
+        var items = [1, 2, 3, 4, 5, "String", true, null];
+        var arr = [1, 2, 212, 4314, 34];
+        for(var i=0;i<items.length;i++){
+            console.log(items[i]);
+        }
+        var i;
+        i = 100;
+        i = "String";
+        i = 'string';
+        i = true;
+        i = null;
+        var j;
+        if (j)
+            console.log(j);
+        else
+            console.log("j is undefined");
+    </script>
+</head>
+<body>
+
+</body>
+</html>

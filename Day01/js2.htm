@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+        //closures
+        //doSthg();
+        var doSthg = function () { console.log("doing sthg"); };
+        
+        function confuse() {
+            return function () {
+                return function () {
+                    console.log("Aahhhhhhhhhhhhhhhhh");
+                };
+            };
+        }
+        confuse()()();
+
+        function work(fn) {
+            fn();
+        }
+        function checkMail() {
+            console.log("checking mail");
+        }
+        work(checkMail);
+        work(function () {
+            console.log("Scratching my head");
+        });
+
+
+
+
+        var i = 100;
+        var eat = function () { console.log("Eating"); };
+        eat();
+        alert(eat);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

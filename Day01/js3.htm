@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+        //JSON
+        var person2 = {
+            name: "Sachin",
+            age: 39,
+            hobbies: ["TV", "Books"],
+            play: function () {
+                alert("Playing cricket");
+            },
+            address: {
+                state : "MH",city :"Mumbai"
+            }
+        };
+        person2.play();
+        console.log(person2.address.city);
+
+
+        var person1 = {
+            name : "Sam",
+            age : 12
+        };
+        console.log(person1.name);
+
+
+
+        function Book(theTitle,thePrice) {
+            this.title = theTitle;
+            this.price = thePrice;
+            if (Book.numberOfBooks == undefined)
+                Book.numberOfBooks = 1;
+            else
+                Book.numberOfBooks++;
+
+            this.read = function () {
+                alert("Reading " + this.title);
+            };
+        }
+        Book.getNumberOfBooks = function () {
+            return Book.numberOfBooks;
+        };
+
+        //Book();
+        var b1 = new Book("XML", 2000);
+       // alert(b1.title + ", " + b1.price);
+        //b1.read();
+        var b2 = new Book("XSL", 1000);
+        //alert(b2.title + ", " + b2.price);
+        // b2.read();
+        alert(Book.numberOfBooks);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
