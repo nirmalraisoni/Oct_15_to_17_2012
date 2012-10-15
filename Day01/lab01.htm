@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<style>
+    .message 
+    {
+        color:Red;    
+    }
+
+</style>
+    <link href="touch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
+    <script src="touch/sencha-touch-all.js"></script>
+    <script>
+        function login() {
+            var userName = Ext.getCmp("usernametext");
+            var password = Ext.getCmp("passwordtext");
+            var message = Ext.getCmp("messagelabel");
+            if (userName.getValue() == "admin" &&
+                password.getValue() == "admin") {
+                userName.disable();
+                password.disable();
+                Ext.getCmp("loginbutton").disable();
+                message.setHtml("Logging in...");
+            }
+            else {
+                message.setHtml("Invalid credentials");
+                userName.select();
+            }
+        }
+
+        Ext.application({
+            launch: function () {
+                Ext.create("Ext.Panel", {
+                height : 300,width : 500,padding : 20,
+                    fullscreen: true,
+                    items: [
+                                {
+                                    xtype: "textfield",
+                                    label: "User name",
+                                    id: "usernametext"
+                                },
+                                {
+                                    xtype: "passwordfield",
+                                    label: "Password",
+                                    id: "passwordtext"
+                                },
+                                {
+                                    xtype : "toolbar",
+                                    docked : "bottom",
+                                    items : [
+                                                {
+                                                    xtype: "button",
+                                                    text: "Login",
+                                                    id: "loginbutton",
+                                                    listeners: {
+                                                        tap: login
+                                                    }
+                                                },
+                                                {
+                                                    xtype: "label",
+                                                    id: "messagelabel",
+                                                    cls: "message"
+                                                }                                    
+                                            ]
+                                }
+                           ]
+                });
+            }
+        });
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
