@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+//        var Ext = {
+//            application: function (cfg) {
+//                if(cfg.launch)
+//                    cfg.launch();
+//            }
+//        };
+
+        function Ext() { }
+        Ext.application = function (cfg) {
+            if (cfg.launch)
+                cfg.launch();
+        }
+
+
+        Ext.application({
+            launch: function () {
+                alert("All set");
+            }
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
