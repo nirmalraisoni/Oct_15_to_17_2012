@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="touch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
+    <script src="touch/sencha-touch-all.js"></script>
+    <script>
+        Ext.define("Guitarist", {
+            playGuitar: function () {
+                console.log("Playing guitar");
+            }
+        });
+        Ext.define("Cricketer", {
+            config: { name: "" },
+            constructor: function (cfg) {
+                this.initConfig(cfg);
+            },
+            playCricket: function () {
+                console.log("Playing Cricket");
+            }
+        });
+
+        Ext.define("SportsPerson", {
+            mixins : ["Guitarist","Cricketer"]
+        });
+
+        var sports1 = Ext.create("SportsPerson", {name:"Sachin"});
+        sports1.playCricket();
+        sports1.playGuitar();
+        //alert(sports1.getName());
+
+
+        Ext.define("Employee", {
+            config: {
+                name: "",
+                salary: 0
+            },
+            work: function () {
+                console.log("Sleeping");
+            },
+            constructor: function (cfg) {
+                this.initConfig(cfg);
+            }
+        });
+        Ext.define("Manager", {
+            extend: "Employee",
+            config: {
+                level: 0
+            },
+            work: function () {
+                this.callParent();
+                console.log("Snoring");
+            },
+            constructor: function (cfg) {
+                this.initConfig(cfg);
+            }
+        });
+        var mgr1 = Ext.create("Manager", {
+            name : "Sam",salary : 1221212,level : 3
+        });
+        mgr1.work();
+        alert(mgr1.getName() + ", " + mgr1.getSalary() + ", " + mgr1.getLevel());
+
+        Ext.define("Person", {
+            statics: {
+                numberOfPersons: 0,
+                fn: function () { }
+            },
+            config: {
+                name: "",
+                address: {
+                    state: "",
+                    city: ""
+                }
+            },
+            constructor: function (cfg) {
+                this.initConfig(cfg);
+                this.statics().numberOfPersons++;
+            }
+        });
+        var p1 = Ext.create("Person", {
+            name: "Ram",
+            address: {
+                state : "TN",
+                city : "Chennai"
+            }
+        });
+        console.log(Person.numberOfPersons);
+        Person.fn();
+        console.log(p1.getName());
+        console.log(p1.getAddress().city);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

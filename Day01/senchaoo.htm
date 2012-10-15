@@ -5,6 +5,13 @@
     <link href="touch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
     <script src="touch/sencha-touch-all.js"></script>
     <script>
+        var arr = [];
+        arr.push(10);
+
+        alert(arr[0]);
+        arr["India"] = { capital: "New Delhi", population: 20958209 };
+        alert(arr["India"].capital);
+
         Ext.define("Car", {
             config: {
                 model: "",
