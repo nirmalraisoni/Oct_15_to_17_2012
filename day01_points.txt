@@ -1,0 +1,57 @@
+
+HTML 5
+	HTML 4 previous version
+	Rich multimedia without dependency on flash,activex
+	offline applications
+	data storage
+	web workers
+	web sockets(push notifications)
+	GeoLocation
+CSS3
+	3d animations	
+	
+			
+
+
+Mobile applications
+	native
+		objective-c,cocoa touch,XCode IDE
+		.ipa file
+		Java, Android SDK, Eclipse
+		.apk file
+		C#, Windows Phone SDK, Visual Studio
+		.xap file
+	
+	PhoneGap (or) Titanium
+		generate or convert your mobile web app to a native app
+		
+	mobile web applications
+		mobile web browser
+		
+		touch effects
+		zoom,pinch,swipe, multi-touch
+		orientation change
+		look and feel
+		
+
+		Sencha Touch
+			support for devices
+			MODULARITY
+			MVC architecture
+
+	browser support
+		V8
+		SpiderMonkey
+		
+		rendering engine
+		Webkit(chrome,safari)
+		Gecko(Firefox)
+		Opera(Opera)
+		MS(IE)							
+
+jQuery Mobile
+Kendo UI
+SUP
+cyclo
+Dojo Mobile
+jQTouch
