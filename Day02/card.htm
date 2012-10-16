@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="touch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
+    <script src="touch/sencha-touch-all.js"></script>
+    <script>
+        Ext.application({
+            launch: function () {
+                Ext.create("Ext.Panel", {
+                    fullscreen: true, padding: 20,
+                    id: "rootpanel",
+                    layout: "card",
+                    activeItem: 0,
+                    items: [
+                                {
+                                    xtype: "panel",
+                                    html: "This is panel 1",
+                                    items: [
+                                        {
+                                            xtype: "button",
+                                            text: "Click here to go to panel 2",
+                                            listeners: {
+                                                tap: function () {
+                                                    //Ext.getCmp("rootpanel").setActiveItem(1);
+                                                    Ext.getCmp("rootpanel").setActiveItem("panel2");
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: "panel",
+                                    html: "This is panel 2",
+                                    id : "panel2",
+                                    items: [
+                                        {
+                                            xtype: "button",
+                                            text: "Click here to go to panel 3",
+                                            listeners: {
+                                                tap: function () {
+                                                    //Ext.getCmp("rootpanel").setActiveItem(2);
+                                                    Ext.getCmp("rootpanel").setActiveItem("panel3");
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: "panel",
+                                    html: "This is panel 3",
+                                    id : "panel3"
+                                }
+                           ]
+                });
+            }
+        });
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
