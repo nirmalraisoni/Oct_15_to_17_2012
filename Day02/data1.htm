@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="touch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
+    <script src="touch/sencha-touch-all.js"></script>
+    <script>
+        Ext.define("Theatre", {
+            extend: "Ext.data.Model",
+            config: {
+                fields : ["name","location","timings"]
+            }
+        });
+        var theatreStore = Ext.create("Ext.data.Store", {
+            model: "Theatre",
+            autoLoad: true,
+            proxy: {
+                url: "theatres.txt",
+                type: "ajax",
+                reader: {
+                    type : "json",
+                    rootProperty : "theatresInPune"
+                }
+            }
+        });
+
+
+        Ext.application({
+            launch: function () {
+                Ext.create("Ext.List", {
+                    fullscreen: true,
+                    store: theatreStore,
+                    itemTpl: "<p>{name}</p>",
+                    //inline : true,
+                    listeners: {
+                        itemtap: function (a, b, c, record) {
+                            var index = theatreStore.find("name", record.get("name"));
+                            index++;
+                            if (index == theatreStore.getCount())
+                                index = 0;
+                            var nextRecord = theatreStore.getAt(index);
+                            alert(nextRecord.get("name") + ", " + nextRecord.get("location"));
+
+                            // alert(record.get("location") + ", " + record.get("timings") );
+                        }
+                    }
+                });
+            }
+        });
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
