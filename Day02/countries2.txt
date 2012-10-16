@@ -1,0 +1,19 @@
+﻿{
+	"countries" : [
+							{"name":"India","places":[
+								{"name":"Pune"},
+								{"name":"Mumbai"},
+								{"name":"Chennai"}
+							]},
+							{"name":"USA","places":[
+								{"name":"Houston"},
+								{"name":"NY"},
+								{"name":"NJ"}
+							]},
+							{"name":"UK","places":[
+								{"name":"London"},
+								{"name":"Essex"},
+								{"name":"Bristol"}
+							]}
+					   ]
+}

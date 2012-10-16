@@ -5,39 +5,29 @@
     <link href="touch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
     <script src="touch/sencha-touch-all.js"></script>
     <script>
-        Ext.define("Country", {
-            extend: "Ext.data.Model",
-            config: {
-                fields : ["name"]
-            }
-        });
-        Ext.define("City", {
+        Ext.define("Place", {
             extend: "Ext.data.Model",
             config: {
                 fields: ["name"]
             }
         });
+        Ext.define("Country", {
+            extend: "Ext.data.Model",
+            config: {
+                fields: ["name"],
+                hasMany: [{ name: "places", model: "Place"}]
+            }
+        });
+       
         var countryStore = Ext.create("Ext.data.Store", {
             model: "Country",
             autoLoad: true,
             proxy: {
-                url: "countries.txt",
+                url: "countries2.txt",
                 type: "ajax",
                 reader: {
                     type : "json",
                     rootProperty : "countries"
-                }
-            }
-        });
-        var cityStore = Ext.create("Ext.data.Store", {
-            model: "City",
-            autoLoad: false,
-            proxy: {
-                url: "cities.ashx",
-                type: "ajax",
-                reader: {
-                    type: "json",
-                    rootProperty: "cities"
                 }
             }
         });
@@ -50,19 +40,22 @@
                     itemTpl: "<p>{name}</p>",
                     listeners: {
                         itemtap: function (src, b, c, record) {
-                            var country = record.get("name");
-                            cityStore.getProxy().setExtraParam("country", country);
-                            cityStore.load();
+                            console.log("record");
+                            console.log(record);
+                            console.log(record.dummy);
+                            console.log("******");
+                            var cityStore = record.placesStore;
                             if (!cityPanel) {
                                 cityPanel = Ext.create("Ext.Panel", {
-                                    height: 300, width: 300,centered:true,
+                                    height: 300, width: 300, centered: true,
                                     items: [
                                             {
                                                 xtype: "list",
+                                                id: "cityList",
                                                 height: 200,
                                                 width: 200,
                                                 padding: 10,
-                                                store: cityStore,
+                                                store: null,
                                                 itemTpl: "{name}"
                                             },
                                             {
@@ -78,7 +71,9 @@
                                     ]
                                 });
                             }
-                            cityPanel.showBy(src,"tr-tl?");
+                            console.log(cityStore);
+                            Ext.getCmp("cityList").setStore(cityStore);
+                            cityPanel.showBy(src, "tr-tl?");
                         }
                     }
                 });
