@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="touch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
+    <script src="touch/sencha-touch-all.js"></script>
+    <script>
+        function sendAjaxRequest() {
+            Ext.Ajax.request({
+                url: 'server.ashx',
+                params: {
+                    name: Ext.getCmp("nametext").getValue()
+                },
+                failure: function (xhr) {
+                    alert("Error: " + xhr.statusText);
+                },
+                success: function (xhr) {
+                    var text = xhr.responseText;
+                    var json = Ext.JSON.decode(text);
+                    alert(json.output);
+                }
+            });
+        }
+        Ext.application({
+            launch: function () {
+                Ext.create("Ext.Panel", {
+                    height: 400, width: 400, fullscreen: true,
+                    items: [
+                                {
+                                    xtype : "textfield",
+                                    label : "Name",
+                                    id : "nametext"
+                                },
+                                {
+                                    xtype: "button",
+                                    text: "Click",
+                                    listeners: {
+                                        tap : sendAjaxRequest
+                                    }
+                                }
+                            ]
+                });
+
+            }
+        });
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
