@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="touch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
+    <script src="touch/sencha-touch-all.js"></script>
+    <script>
+        Ext.define("MyPanel", {
+            extend: "Ext.Panel",
+            xtype: "mypanel",
+            config: {
+                items: [
+                            {
+                                xtype : "button",
+                                text : "Click",
+                                ui : "confirm"
+                            }
+                        ]
+            }
+          });
+          Ext.application({
+              launch: function () {
+                  Ext.create("Ext.Panel", {
+                      height: 400, width: 400, fullscreen: true,
+                      items: [
+                                {
+                                    xtype : "mypanel"
+                                }
+                            ]
+                  });
+
+              }
+          });
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
